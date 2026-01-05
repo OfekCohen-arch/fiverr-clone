@@ -1,36 +1,47 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
-import { defineConfig, globalIgnores } from 'eslint/config'
+// eslint.config.js
+import js from "@eslint/js";
+import globals from "globals";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import reactRefreshPlugin from "eslint-plugin-react-refresh";
 
-export default defineConfig([
-  globalIgnores(['dist']),
+export default [
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-      'prettier',
-    ],
-    languageOptions: {
-      ecmaVersion: 'latest',
-      globals: globals.browser,
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
+    ignores: ["dist", "node_modules"],
+  },
+
+js.configs.recommended,
+
+{
+  files: ["**/*.{js,jsx}"],
+  languageOptions: {
+    ecmaVersion: "latest",
+    sourceType: "module",
+    globals: {
+      ...globals.browser,
+      ...globals.node,
     },
-    rules: {
-      'no-unused-vars': [
-        'error',
-        {
-          varsIgnorePattern: '^_',
-          argsIgnorePattern: '^_',
-          ignoreRestSiblings: true,
-        },
-      ],
+    parserOptions: {
+      ecmaFeatures: { jsx: true },
     },
   },
-])
+  plugins: {
+    react: reactPlugin,
+    "react-hooks": reactHooksPlugin,
+    "react-refresh": reactRefreshPlugin,
+  },
+  settings: {
+    react: { version: "detect" },
+  },
+  rules: {
+    // React 17+ / Vite: no need to import React for JSX
+    "react/react-in-jsx-scope": "off",
+
+    // Hooks rules
+    ...reactHooksPlugin.configs.recommended.rules,
+
+    // Optional: helps with HMR patterns
+    "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+  },
+},
+];

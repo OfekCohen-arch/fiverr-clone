@@ -1,48 +1,361 @@
+/* =========================
+   Header shell
+   ========================= */
+
 .app-header {
   background: var(--clr-surface);
+}
+
+.app-header-row {
+  width: 100%;
   border-bottom: 1px solid var(--clr-border);
 }
 
 .app-header-inner {
-  padding: 12px 0;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 
-  /* Layout: 3 regions (logo | nav | actions) */
-  grid-template-columns: auto 1fr auto;
+  height: 80px;
+  padding-inline: 32px;
+
+  grid-template-columns: max-content 1fr;
+  column-gap: 32px;
 }
 
-/* Make nav links flow horizontally */
-.nav {
-  grid-auto-flow: column;
-  grid-auto-columns: max-content;
-  justify-content: start;
-  gap: 8px;
+/* =========================
+   Logo
+   ========================= */
+
+.site-logo {
+  display: grid;
+  align-items: center;
+
+  min-width: 121px;
+  height: 100%;
+
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-/* Logo */
-.app-header .logo {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--clr-brand1);
-  letter-spacing: -0.02em;
+.site-logo-svg {
+  display: block;
+  width: 89px;
+  height: 27px;
 }
 
-/* Nav links */
-.app-header .nav-link {
-  font-weight: 500;
-  color: var(--clr-secondary);
-  padding: 6px 12px;
-  border-radius: 999px;
+.site-logo-svg .logo-word {
+  fill: #404145;
 }
 
-.app-header .nav-link.active {
-  color: var(--clr-primary);
-  background: var(--clr-surface-muted);
+.site-logo-svg .logo-dot {
+  fill: #1dbf73;
 }
 
-/* Actions: buttons flow horizontally */
-.header-actions {
+/* =========================
+   Right navigation
+   ========================= */
+
+.header-nav {
   grid-auto-flow: column;
   grid-auto-columns: max-content;
   justify-content: end;
-  gap: 8px;
+  align-items: center;
+  column-gap: 12px;
+}
+
+/* =========================
+   Nav groups
+   ========================= */
+
+.nav-group {
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  align-items: center;
+  column-gap: 12px;
+}
+
+/* =========================
+   Base links & buttons
+   ========================= */
+
+.header-link,
+.nav-dd-trigger {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+
+  font:
+    600 16px/24px Macan,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color: #62646a;
+  white-space: nowrap;
+
+  padding: 8px 16px;
+  border-radius: 8px;
+
+  transition:
+    color 0.2s,
+    background-color 0.2s;
+}
+
+/* =========================
+   Default hover
+   ========================= */
+
+.header-link:hover,
+.nav-dd-trigger:hover {
+  color: #222325;
+  background: var(--clr-surface-muted);
+}
+
+/* =========================
+   Green hover links
+   ========================= */
+
+.header-link-green:hover {
+  color: #1dbf73;
+  background: transparent;
+  text-decoration: none;
+}
+
+/* =========================
+   Language icon
+   ========================= */
+
+.globe {
+  margin-inline-end: 8px;
+}
+
+/* =========================
+   Dropdown trigger
+   ========================= */
+
+.nav-dd {
+  position: relative;
+}
+
+/* =========================
+   Arrow
+   ========================= */
+
+.nav-arrow-down {
+  margin-inline-start: 8px;
+  font-size: 12px;
+  line-height: 12px;
+  opacity: 0.85;
+  display: inline-block;
+  transition: transform 0.15s ease-in-out;
+}
+
+.nav-arrow-down.is-open {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   Dropdown panel base
+   ========================= */
+
+.nav-dd-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: var(--z-overlay);
+
+  min-width: 240px;
+  white-space: normal;
+
+  display: block;
+}
+
+/* =========================
+   Fiverr Pro dropdown card
+   ========================= */
+
+.nav-dd-panel-pro {
+  width: 420px;
+  max-width: 500px;
+
+  background: #fff;
+  border-radius: 12px;
+  box-shadow:
+    0 0 0.88px rgba(0, 0, 0, 0.03),
+    0 0 2.29px rgba(0, 0, 0, 0.03),
+    0 0 5.52px rgba(0, 0, 0, 0.054),
+    0 0 11px rgba(0, 0, 0, 0.09);
+
+  padding: 8px 0;
+  overflow: hidden;
+}
+
+/* =========================
+   Explore dropdown card
+   ========================= */
+
+.nav-dd-panel-explore {
+  width: 320px;
+
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  padding: 10px;
+}
+
+/* =========================
+   Explore items
+   ========================= */
+
+.nav-dd-item {
+  display: block;
+  padding: 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-dd-item:hover {
+  background: var(--clr-surface-muted);
+}
+
+.nav-dd-item.compact {
+  padding: 10px 12px;
+}
+
+.nav-dd-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222325;
+}
+
+.nav-dd-sub {
+  margin-top: 2px;
+  font-size: 13px;
+  color: #74767e;
+  line-height: 1.35;
+}
+
+/* =========================
+   Join button
+   ========================= */
+
+.join-btn {
+  display: grid;
+  place-items: center;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 100%;
+
+  padding: 10px 16px;
+  border-radius: 4px;
+
+  border: 1px solid currentColor;
+  background: none;
+  color: #222325;
+  text-decoration: none;
+
+  transition: 0.2s;
+  white-space: nowrap;
+}
+
+.join-btn:hover {
+  background: #222325;
+  color: var(--clr-surface);
+  text-decoration: none;
+}
+
+/* =========================
+   Fiverr Pro menu layout
+   ========================= */
+
+.pro-menu {
+  display: grid;
+  grid-auto-flow: row;
+}
+
+/* =========================
+   Fiverr Pro item row
+   ========================= */
+
+.pro-menu-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  column-gap: 24px;
+
+  padding: 12px 16px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.pro-menu-item:hover {
+  background: var(--clr-surface-muted);
+}
+
+/* =========================
+   Fiverr Pro icon
+   ========================= */
+
+.pro-menu-icon {
+  width: 56px;
+  height: 56px;
+
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+/* =========================
+   Fiverr Pro text
+   ========================= */
+
+.pro-menu-text {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pro-menu-title,
+.pro-menu-sub {
+  display: block;
+}
+
+.pro-menu-title {
+  font:
+    700 14px/22px Macan,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color: #222325;
+}
+
+.pro-menu-sub {
+  font:
+    400 14px/22px Macan,
+    Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  color: #222325;
+}
+
+/* =========================
+   Fiverr Pro divider
+   ========================= */
+
+.pro-menu-divider {
+  height: 1px;
+  background: #dadbdd;
+  margin: 8px 0;
 }

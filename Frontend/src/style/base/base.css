@@ -16,6 +16,12 @@ body {
   min-height: 100%;
   margin: 0;
 
+  font:
+    16px/24px Helvetica Neue,
+    Helvetica,
+    Arial,
+    sans-serif;
+
   background: var(--clr-bg-main);
   color: var(--clr-primary);
 

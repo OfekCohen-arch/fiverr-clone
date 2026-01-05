@@ -1,4 +1,3 @@
-// server.js
 import "dotenv/config";
 
 import http from "node:http";
