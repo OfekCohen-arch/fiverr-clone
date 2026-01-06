@@ -4,6 +4,7 @@ import { HomePage } from './pages/HomePage.jsx'
 import { SearchResultsPage } from './pages/SearchResultsPage.jsx'
 import { AboutPage } from './pages/AboutPage.jsx'
 import { ExplorerPage } from './pages/ExplorerPage.jsx'
+import { GigDetails } from './pages/GigDetails.jsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/search" element={<SearchResultsPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/explorer" element={<ExplorerPage />} />
+          <Route path='gig/:gigId' element={<GigDetails/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
