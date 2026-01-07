@@ -33,6 +33,7 @@
    Component styles
 ============================ */
 @import url('./components/GigPreview.css');
+@import url('./components/GigList.css');
 
 
 /* layout */
@@ -48,7 +49,11 @@
 @import './pages/HomePage.css';
 @import './pages/SearchResultsPage.css';
 @import './pages/AboutPage.css';
+<<<<<<< HEAD
 @import './pages/GigDetails.css';
+=======
+@import './pages/GigIndex.css';
+>>>>>>> 36ef5935fe6693bb61929419cc4368905277b087
 
 /* ============================
    Media queries (ALWAYS LAST)
